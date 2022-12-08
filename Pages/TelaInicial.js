@@ -6,30 +6,48 @@ export default function TelaInicial({navigation}){
       <View style={styles.ViewMaster}>
 
         <View style={styles.View1}>
-        <TouchableOpacity
-          style={styles.button1}
-          onPress={()=> navigation.navigate('QRcode')}>
-          <Image style={styles.Image} source={require('./assets/function_qr.png')}/>
-          <Text style={styles.Text}>QRCode print</Text>
-        </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.button1}
+            onPress={()=> navigation.navigate('QRcode')}>
+            <Image style={styles.Image} source={require('./assets/function_qr.png')}/>
+            <Text style={styles.Text}>QRCode print</Text>
+          </TouchableOpacity>
         </View>
 
         <View style={styles.View2}>
-        <TouchableOpacity
-          style={styles.button2}
-          onPress={()=> navigation.navigate('BarCode')}>
-          <Image style={styles.Image} source={require('./assets/function_barcode.png')}/>
-          <Text style={styles.Text}>BarCode print</Text>
-        </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.button2}
+            onPress={()=> navigation.navigate('BarCode')}>
+            <Image style={styles.Image} source={require('./assets/function_barcode.png')}/>
+            <Text style={styles.Text}>BarCode print</Text>
+          </TouchableOpacity>
         </View>
 
         <View style={styles.View3}>
-        <TouchableOpacity
-          style={styles.button3}
-          onPress={()=> navigation.navigate('Text')}>
-          <Image style={styles.Image} source={require('./assets/function_text.png')}/>
-          <Text style={styles.Text}>Text print</Text>
-        </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.button3}
+            onPress={()=> navigation.navigate('Text')}>
+            <Image style={styles.Image} source={require('./assets/function_text.png')}/>
+            <Text style={styles.Text}>Text print</Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.View4}>
+          <TouchableOpacity
+            style={styles.button4}
+            onPress={()=> navigation.navigate('Formulario')}>
+            <Image style={styles.Image} source={require('./assets/function_text.png')}/>
+            <Text style={styles.Text}>Formulário</Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.View5}>
+          <TouchableOpacity
+            style={styles.button5}
+            onPress={()=> navigation.navigate('Imagem')}>
+            <Image style={styles.Image} source={require('./assets/function_text.png')}/>
+            <Text style={styles.Text}>Imagem</Text>
+          </TouchableOpacity>
         </View>
 
       </View>
@@ -97,7 +115,7 @@ const styles = StyleSheet.create({
       backgroundColor: '#04142e',
       bottom:"1%",
       margin:'3%',
-      left:"50%",
+      left:"750%",
       borderRadius: 2,
       paddingVertical: '2%',
       paddingHorizontal: '2%',
@@ -109,6 +127,30 @@ const styles = StyleSheet.create({
       left:"-220%",
       right:"0%",
       bottom:"24%",
+      borderRadius: 2,
+      paddingVertical: '2%',
+      paddingHorizontal: '2%',
+      width:160,
+      height:140,
+    },
+        
+    button4 : {
+      backgroundColor: '#04142e',
+      left:"90%",
+      right:"0%",
+      bottom:"-24%",
+      borderRadius: 2,
+      paddingVertical: '2%',
+      paddingHorizontal: '2%',
+      width:160,
+      height:140,
+    },
+        
+    button5 : {
+      backgroundColor: '#04142e',
+      left:"-145%",
+      right:"9%",
+      bottom:"-45%",
       borderRadius: 2,
       paddingVertical: '2%',
       paddingHorizontal: '2%',
