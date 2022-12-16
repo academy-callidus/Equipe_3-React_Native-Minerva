@@ -36,7 +36,7 @@ export default function TelaInicial({navigation}){
           <TouchableOpacity
             style={styles.button4}
             onPress={()=> navigation.navigate('Formulario')}>
-            <Image style={styles.Image} source={require('./assets/function_text.png')}/>
+            <Image style={styles.Image} source={require('./assets/function_tab.png')}/>
             <Text style={styles.Text}>Formulário</Text>
           </TouchableOpacity>
         </View>
@@ -45,7 +45,7 @@ export default function TelaInicial({navigation}){
           <TouchableOpacity
             style={styles.button5}
             onPress={()=> navigation.navigate('Imagem')}>
-            <Image style={styles.Image} source={require('./assets/function_text.png')}/>
+            <Image style={styles.Image} source={require('./assets/function_pic.png')}/>
             <Text style={styles.Text}>Imagem</Text>
           </TouchableOpacity>
         </View>
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
       top:"1%",
       backgroundColor: '#04142e',
       margin:'3%',
-      left:"4%",
+      left:"25%",
       borderRadius: 2,
       paddingVertical: '2%',
       paddingHorizontal: '2%',
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
       backgroundColor: '#04142e',
       bottom:"1%",
       margin:'3%',
-      left:"750%",
+      right:"-1200%",
       borderRadius: 2,
       paddingVertical: '2%',
       paddingHorizontal: '2%',
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
     },    
     button3 : {
       backgroundColor: '#04142e',
-      left:"-220%",
+      left:"-210%",
       right:"0%",
       bottom:"24%",
       borderRadius: 2,
@@ -148,9 +148,8 @@ const styles = StyleSheet.create({
         
     button5 : {
       backgroundColor: '#04142e',
-      left:"-145%",
-      right:"9%",
-      bottom:"-45%",
+      left:"-123%",
+      bottom:"-47%",
       borderRadius: 2,
       paddingVertical: '2%',
       paddingHorizontal: '2%',

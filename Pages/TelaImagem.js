@@ -1,91 +1,99 @@
 import SunmiPrinter from '@heasy/react-native-sunmi-printer';
-import { View, Text, Image, TouchableOpacity } from 'react-native';
-import { useState } from 'react';
-import { CheckBox } from 'react-native-elements';
-import { StyleSheet, TextInput } from 'react-native';
-import React from 'react';
+import { View, Text, TouchableOpacity, Image } from "react-native";
+import { useState } from "react";
+import { CheckBox } from "react-native-elements";
+import { StyleSheet } from "react-native";
+import { TextInput } from 'react-native';
 import { Dimensions } from 'react-native';
-import QRCode from "react-native-qrcode-svg";
-import { Modal } from 'react-native';
-import { width } from 'cli';
-import { Button } from 'react-native-paper'
+import { Button } from 'react-native-paper';
 
 
-export default function TelaImagem() {
-  const [tamanho, setTamanho] = useState(6)
-  const [texto, setTexto] = useState('www.tectoySunmi.com.br')
-  const [alinhamento, setAlinhamento] = useState(1)
-  const [checked1, set1] = useState(false)
-  const [checked2, set2] = useState(true)
-  const [checked3, set3] = useState(false)
-  const [visivel, setVisivel] = useState(false)
 
-  function printQRCode() {
-    SunmiPrinter.setFontWeight(true)
-    SunmiPrinter.setAlignment(alinhamento)
-    SunmiPrinter.printQRCode(texto, tamanho, 1)
+export default function TelaText() {
+  const Underline_Value = 1003
+  const Bold_Value = 1002
+  const [texto, setTexto] = useState('Hello World! Olá Mundo')
+  const [tam, setTam] = useState(18)
+  const [bold, setBold] = useState(false)
+  const [underline, setunder] = useState(false)
+
+  const PrinterText = () => {
+    SunmiPrinter.setFontSize(tam);
+    SunmiPrinter.setFontWeight(true);
+    SunmiPrinter.setPrinterStyle(Bold_Value, bold ? 1 : 2)
+    SunmiPrinter.setPrinterStyle(Underline_Value, underline ? 1 : 2)
+    SunmiPrinter.printerText(texto)
   }
 
+  
+  
+  
+  
   function aumenta() {
-    if (Number(tamanho) < 8) {
-      setTamanho(Number(tamanho) + 1)
+    if (Number(tam) < 30) {
+      setTam(Number(tam) + 2)
     }
   }
 
   function diminui() {
-    if (Number(tamanho) > 2) {
-      setTamanho(Number(tamanho) - 1)
+    if (Number(tam) > 2) {
+      setTam(Number(tam) - 2)
     }
   }
 
   return (
     <View style={styles.V}>
+      
+        <Text style={styles.TextTitle} >Insira o Texto</Text>
+        <TextInput style={styles.TextInput} defaultValue={texto} onChangeText={newText => setTexto(newText)}></TextInput>
 
-      <View style={styles.ViewModal}>
+      <View style={styles.ViewTamanho}>
+        <Text style={styles.TextQRCode}>Escolha o Tamanho da Fonte:  </Text>
 
-      <Text style={styles.TextQRCode2}>Alinhamento:</Text>
 
-        <Modal visible={visivel} onRequestClose={() => setVisivel(false)}>
+        <Button style={styles.subtrador} mode= "contained" onPress={diminui}> -2 </Button>
 
-          <Text style={styles.TextQRCode4}>Alinhamento:</Text>
+        <Text style={styles.TextTamanho}> {tam} </Text>
 
-          <View style={styles.Colunas}>
-            <CheckBox style={{ flex: 1 }} uncheckedIcon={<Image source={require('./assets/uncheckedIcon.png')} />} checkedIcon={<Image source={require('./assets/checkedIcon.png')} />} title='Esquerda' checked={checked2} onPress={() => (set1(true), set2(false), set3(false), setAlinhamento(0), setVisivel(false))} />
-            <CheckBox style={{ flex: 1 }} uncheckedIcon={<Image source={require('./assets/uncheckedIcon.png')} />} checkedIcon={<Image source={require('./assets/checkedIcon.png')} />} title='Centro' checked={checked2} onPress={() => (set1(false), set2(true), set3(false), setAlinhamento(1), setVisivel(false))} />
-            <CheckBox style={{ flex: 1 }} uncheckedIcon={<Image source={require('./assets/uncheckedIcon.png')} />} checkedIcon={<Image source={require('./assets/checkedIcon.png')} />} title='Direita' checked={checked3} onPress={() => (set1(false), set2(false), set3(true), setAlinhamento(2), setVisivel(false))} />
-          </View>
-
-        </Modal>
-
-        <TouchableOpacity onPress={() => setVisivel(true)}>
-
-          <Text style={styles.TextQRCode3}>{checked1 ? 'Esquerda' : checked2 ? 'Centro' : 'Direita'}</Text>
-
-        </TouchableOpacity>
-
+        <Button style={styles.somadores} mode= "contained" onPress={aumenta}> +2 </Button> 
       </View>
 
-      <View style={styles.ViewQRCode}>
-
-        <Image source={require('./assets/test1.jpg')}></Image>
-
+      <View style={styles.visao}>
+        <CheckBox style = {styles.CheckBox} uncheckedIcon={<Image source={require('./assets/uncheckedIcon.png')} />} checkedIcon={<Image source={require('./assets/checkedIcon.png')} />} title='Negrito' checkedColor="blue" checked={bold} onPress={() => setBold(!bold)} />
+        <CheckBox style = {styles.CheckBox} uncheckedIcon={<Image source={require('./assets/uncheckedIcon.png')} />} checkedIcon={<Image source={require('./assets/checkedIcon.png')} />} title='Sublinhado' checkedColor="orange" checked={underline} onPress={() => setunder(!underline)} />
       </View>
 
-
-      <View style={styles.Impressão}>
-        <TouchableOpacity onPress={printQRCode}>
-
-          <Text style={styles.texto2}>Imprimir</Text>
-
+      <View style={styles.visao}>
+        <TouchableOpacity onPress={PrinterBitmap}>
+          <Text style={styles.texto2}>Imprime</Text>
         </TouchableOpacity>
       </View>
-
-
     </View>
   );
 }
 
+
 const styles = StyleSheet.create({
+  texto: {
+    fontSize: 20,
+    backgroundColor: 'blue',
+    color: 'white',
+    padding: 5,
+    width: 30,
+    textAlign: 'center'
+  },
+  visao: {
+    alignSelf: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+    padding: 2,
+    flex: 1
+  },
+  t: {
+    fontSize: 20,
+    backgroundColor: 'darkgrey',
+    height: 36
+  },
   V: {
     height: Dimensions.get('window').height,
     width: Dimensions.get('window').width,
@@ -99,9 +107,7 @@ const styles = StyleSheet.create({
   ViewTamanho: {
     top:"4%",
   },
-  Impressão:{
-    bottom:'-50%'
-  },
+ 
   somadores: {
     height: 36, 
     width: 50, 
@@ -130,7 +136,7 @@ const styles = StyleSheet.create({
     width:220,
     height:160,
     backgroundColor:"black",
-    right:"-5%",
+    right:"-25%",
 
   },
 
@@ -257,7 +263,7 @@ const styles = StyleSheet.create({
   texto2: {
     fontSize: 20,
     color: 'white',
-    top:"160%",
+    top:"10%",
     backgroundColor:"#d94307",
     alignItems: 'center',
     width:360,
@@ -273,6 +279,8 @@ const styles = StyleSheet.create({
     height: Dimensions.get('window').height,
     width: Dimensions.get('window').width,
     backgroundColor:"black"
-  }
+  },
+    CheckBox:{
+      color:"silver"
+    },
 })
-
